@@ -1,0 +1,18 @@
+@import "tailwindcss";
+html {
+  scroll-behavior: smooth;
+}
+select::-webkit-scrollbar {
+  width: 8px;
+}
+select::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 4px;
+}
+select::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+.Poppins-font {
+   font-family: 'Poppins', 'Roboto', 'Open Sans', sans-serif;
+  font-weight: 600; /* Semi-bold */
+}
