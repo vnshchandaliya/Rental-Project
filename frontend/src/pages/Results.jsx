@@ -1,81 +1,95 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import PropertyMap from "../components/PropertyMap";
 import axios from "axios";
-import PropertyCard from "../components/PropertyCard";
+import { useLocation } from "react-router-dom";
+import { ArrowUpRight } from 'lucide-react';
 
-const Results = () => {
+const ResultsPage = () => {
   const location = useLocation();
   const [properties, setProperties] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // ✅ Parse query params from URL
-  const queryParams = new URLSearchParams(location.search);
-  const checkIn = queryParams.get("checkIn");
-  const checkOut = queryParams.get("checkOut");
-  const guests = queryParams.get("guests");
-  const bathroom = queryParams.get("bathroom");
+  const [selectedProperty, setSelectedProperty] = useState(null); // track selected
 
   useEffect(() => {
-    const fetchAvailableProperties = async () => {
-      try {
-        console.log("🔍 Fetching available properties for:", {
-          checkIn,
-          checkOut,
-          guests,
-          bathroom,
-        });
+    const params = new URLSearchParams(location.search);
+    const guests = params.get("guests");
+    const bathroom = params.get("bathroom");
 
-        const res = await axios.get("http://localhost:5000/api/properties/available", {
-          params: { checkIn, checkOut, guests, bathroom },
-        });
-
-        console.log("✅ Available Data:", res.data);
-
-        if (Array.isArray(res.data) && res.data.length > 0) {
-          setProperties(res.data);
-        } else {
-          setProperties([]);
-        }
-      } catch (err) {
-        console.error("❌ Error fetching available properties:", err);
-        setProperties([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (checkIn && checkOut) fetchAvailableProperties();
-  }, [checkIn, checkOut, guests, bathroom]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex justify-center items-center text-lg font-semibold">
-        Loading available rentals...
-      </div>
-    );
-  }
+    axios.get("http://localhost:5000/api/properties/filter", {
+      params: { guests, bathroom }
+    }).then(res => setProperties(res.data));
+  }, [location.search]);
 
   return (
-    <section className="py-16 bg-gray-50 min-h-screen">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-4xl font-semibold text-center mb-10">
-          Search Our Vacation Rentals
-        </h2>
-
-        {properties.length === 0 ? (
-          <p className="text-center text-gray-500 text-lg">
-            No properties available for selected dates.
-          </p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {properties.map((property) => (
-              <PropertyCard key={property._id} property={property} />
-            ))}
-          </div>
-        )}
+    <>
+    <section loading="lazy"
+        className="relative h-[40vh] bg-cover bg-center flex items-center justify-center text-white text-center overflow-hidden"
+        style={{
+          backgroundImage: `url(https://www.coastaldreamrentals.com/img/hero-bg-img.jpeg)`,
+        }}
+      >
+        <div className="absolute inset-0 bg-[#00000049] z-10"></div>
+        <div className="relative z-20 max-w-4xl px-4">
+          <h1 className="text-center  text-[90px] font-[900] mx-19 pt-40">Results</h1>
+          {/* <p className="text-2xl">We have many properties to serve all your Vacation needs!</p> */}
+        </div>
+      </section>
+      <div className="container pt-15">
+        <p className="mx-13 text-[40px]">Map</p>
+    <div className="flex pt-15">
+      <div className="w-2/3 mx-10 h-[87vh]">
+        <PropertyMap 
+          properties={properties} 
+          selectedProperty={selectedProperty} 
+        />
       </div>
-    </section>
+      <div className="w-1/4 overflow-y-scroll h-screen">
+      {properties.map((p) => (
+        <div
+          key={p._id}
+          className="border-b p-4 cursor-pointer hover:bg-gray-100"
+          onClick={() => setSelectedProperty(p)}
+        >
+          <img
+            src={p.image}
+            alt={p.title}
+            className="rounded-md h-40 w-full object-cover"
+          />
+
+          {/* 👇 Title + Icon aligned in one row */}
+          <div className="flex items-center justify-between mt-2">
+            <h3 className="font-semibold text-lg">{p.title}</h3>
+
+            {/* clickable icon */}
+          <div>
+  {p.link && (
+    <a
+      href={p.link}
+      target={p.link.startsWith("http") ? "_blank" : "_self"} // open internal routes in same tab
+      rel="noopener noreferrer"
+      onClick={(e) => e.stopPropagation()} // prevent selecting map marker
+    >
+      <ArrowUpRight
+        className="w-9 h-9 text-sky-600 cursor-pointer hover:text-sky-800 transition"
+        title="View Property"
+      />
+    </a>
+  )}
+</div>
+
+          </div>
+
+          <p className="text-gray-600 text-sm">
+            {p.guests} guests • {p.bathroom} bath
+          </p>
+        </div>
+      ))}
+    </div>
+    </div>
+
+      </div>
+     </>
   );
+  
 };
 
-export default Results;
+export default ResultsPage;

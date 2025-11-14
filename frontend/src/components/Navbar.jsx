@@ -23,23 +23,28 @@ const Navbar = () => {
       { name: "CONTACT", link: "/contact" },
     ],
     COMMUNITIES: [
-      { name: "Destin", link: "/communities/destin" },
-      { name: "Okaloosa Island", link: "/communities/okaloosa" },
-      { name: "Santa Rosa Beach", link: "/communities/santa-rosa" },
-      { name: "Navarre Beach", link: "/communities/navarre" },
+      { name: "Sea Dunes", link: "/communities/destin" },
+      { name: "Jade East 210", link: "/communities/okaloosa" },
+      { name: "Grand Caribbean West", link: "/communities/santa-rosa" },
+      { name: "Crystal Sands", link: "/communities/navarre" },
+       { name: "Beach Sanctuary", link: "/communities/destin" },
+      { name: "Shoreline Towers 2051", link: "/communities/okaloosa" },
+      { name: "Summer Breeze", link: "/communities/santa-rosa" },
+      { name: "Summer Spell", link: "/communities/navarre" },
     ],
     "WHAT WE OFFER": [{ name: "Properties", link: "/properties" }],
   };
 
   const menuItems = [
     { name: "HOME", link: "/" },
+     { name: "ABOUT" },
     { name: "COMMUNITIES" },
     { name: "WHAT WE OFFER" },
     { name: "SPECIALS", link: "/specials" },
     { name: "ACTIVITIES", link: "/activities" },
     { name: "REVIEWS", link: "/reviews" },
     { name: "CALENDARS", link: "/calendars" },
-    { name: "ABOUT" },
+   
   ];
 
   return (
@@ -86,9 +91,9 @@ const Navbar = () => {
 
       {/* --- Bottom Row (Nav Bar) --- */}
       <nav
-        className="flex justify-center items-center space-x-10 font-semibold text-base transition-colors duration-300 bg-sky-400 text-white"
+        className="flex justify-center items-center p-2 space-x-21 font-bold text-[16.5px] fontFamily transition-colors duration-300 bg-[#48d9ff] text-white"
       >
-        {menuItems.map((item) => {
+        {menuItems.map((item) => {  
           const hasDropdown = dropdowns[item.name];
           return (
             <div

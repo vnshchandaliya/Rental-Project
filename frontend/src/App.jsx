@@ -7,6 +7,12 @@ import Properties from "./pages/Properties";
 import Results from "./pages/Results";
 
 import SeaDunesBeachFront from "./pages/PropertiesListing/SeaDunes";
+import Footer from "./components/Footer";
+// import PropertyDetail from "./pages/PropertyDetails";
+// import BookingForm from "./pages/BookingForm";
+// import BookingSummary from "./pages/BookingSummary";
+
+
 
 
 function App() {
@@ -17,10 +23,13 @@ function App() {
         <Route path="/" element={<HeroSection />} />
         <Route path="/properties" element={<Properties />} />
         <Route path="/results" element={<Results />} />
+        {/* <Route path="/property/:id" element={<PropertyDetail />} /> */}
+        {/* <Route path="/booking-form" element={<BookingForm />} /> */}
+        {/* <Route path="/booking-summary" element={<BookingSummary/>}/> */}
         <Route path="/sea-dunes-beach-front" element={<SeaDunesBeachFront />} />
         
       </Routes>
-    
+    <Footer />
     </>
   );
 }

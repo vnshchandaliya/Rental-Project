@@ -19,6 +19,8 @@ const seedDB = async () => {
     sleep: 8,
     image: "https://www.coastaldreamrentals.com/img/property-img-1/img-7.jpg",
     link: "/sea-dunes-beach-front",
+    latitude: 30.3968971,
+    longitude :-86.6167099
   },
   {
     title: "Jade East 210",
@@ -29,6 +31,8 @@ const seedDB = async () => {
     sleep: "3 King Beds",
     image: "https://www.coastaldreamrentals.com/img/property-img2/img-1.jpg",
     link: "/jade-east-210",
+    latitude : 30.3846415,
+    longitude :-86.4719508 ,
   },
   {
     title: "Grand Caribbean West 213",
@@ -39,6 +43,8 @@ const seedDB = async () => {
     sleep: 2,
     image: "https://www.coastaldreamrentals.com/img/property-img3/img-1.jpg",
     link: "/grand-caribbean-west-213",
+    latitude :30.382332 ,
+    longitude :-86.418849 ,
   },
   {
     title: "Crystal Sands",
@@ -49,6 +55,8 @@ const seedDB = async () => {
     sleep: 6,
     image: "https://www.coastaldreamrentals.com/img/property-img4/img-1.jpg",
     link: "/crystal-sands",
+    latitude :30.3816755 ,
+    longitude : -86.4209881,
   },
   {
     title: "Beach Sanctuary, Destin",
@@ -58,6 +66,8 @@ const seedDB = async () => {
     sleep: 10,
     image: "https://www.coastaldreamrentals.com/img/property-img5/img-1.jpg",
     link: "/beach-sanctuary-destin",
+    latitude : 30.374828,
+    longitude :-86.338449 ,
   },
   {
     title: "Shoreline Towers 2051, Destin",
@@ -68,6 +78,8 @@ const seedDB = async () => {
     sleep: 6,
     image: "https://www.coastaldreamrentals.com/img/property-img6/img-1.jpg",
     link: "/shoreline-towers-2051",
+    latitude :30.3841855 ,
+    longitude :-86.4818538 ,
   },
   {
     title: "Summer Breeze",
@@ -77,6 +89,8 @@ const seedDB = async () => {
     sleep: 6,
     image: "https://www.coastaldreamrentals.com/img/property-img-7/Summer%20Breeze%20204_20250417_5%20(1).jpg",
     link: "/summer-breeze",
+    latitude : 30.378859,
+    longitude : -86.387664,
   },
   {
     title: "Summer Spell",
@@ -86,6 +100,8 @@ const seedDB = async () => {
     sleep: 6,
     image: "https://www.coastaldreamrentals.com/img/property-img-8/Summerspell%20106_20250304_19.jpg",
     link: "/summer-spell",
+    latitude :30.378858 ,
+    longitude : -86.388078,
   },
 ];
 

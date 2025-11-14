@@ -139,7 +139,7 @@ const HeroSection = () => {
               ))}
             </select>
 
-            <select
+            {/* <select
               name="bathroom"
               value={formData.bathroom}
               onChange={handleChange}
@@ -150,7 +150,7 @@ const HeroSection = () => {
                   {i + 1} Bathroom{i > 0 ? "s" : ""}
                 </option>
               ))}
-            </select>
+            </select> */}
 
             <button
               type="submit"
